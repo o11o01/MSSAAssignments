@@ -7,6 +7,8 @@
             int[] data = { 2, 3, 4, 5, 6 };
             int[] left = new int[data.Length];
             int[] right = new int[data.Length];
+            //Populating new array with the cumulative multiplication from left
+            //2, 3, 4 ----> 2, 6, 24
             for (int i = 0; i < data.Length; i++)
             {
                 if (i ==0)
@@ -18,6 +20,7 @@
                     left[i] = left[i-1] * data[i];
                 }
             }
+            // Populating new array with the cumulative multiplication from right
             for (int i = data.Length - 1;i >= 0; i--)
             {
                 if (i == data.Length - 1)
