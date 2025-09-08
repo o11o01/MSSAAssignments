@@ -7,29 +7,35 @@ namespace Assignment10._1._1
     {
         static void Main(string[] args)
         {
-            Student newStudent = new Student();
-            newStudent.grade = 91.2;
-            newStudent.name = "John";
-            newStudent.numAssignments = 10;
-            string filename = $"{newStudent.name}";
+            List<Student> listStudents = new List<Student>();
+            listStudents.Add(new Student());
+            listStudents.Add(new Student());
+            listStudents[0].grade = 91.2;
+            listStudents[0].name = "John";
+            listStudents[0].numAssignments = 10;
+            listStudents[1].grade = 67.3;
+            listStudents[1].name = "Josh";
+            
+
+
+            string jsonString = JsonSerializer.Serialize(listStudents);
+            Console.WriteLine(jsonString);
+            List<Student> jsonStudents = JsonSerializer.Deserialize<List<Student>>(jsonString);
+            Console.WriteLine(jsonStudents[0].grade);
+
+
+            string filename = $"{listStudents[0].name}";
             TextWriter writer = new StreamWriter(filename);
-
-
-             string jsonString = JsonSerializer.Serialize(newStudent);
-             Console.WriteLine(jsonString);
-             Student jsonStudent = JsonSerializer.Deserialize<Student>(jsonString);
-             Console.WriteLine(jsonStudent.grade);
-
-
-            XmlSerializer xmlserializer = new XmlSerializer(typeof(Student));
-            xmlserializer.Serialize(writer, newStudent);
+            XmlSerializer xmlserializer = new XmlSerializer(typeof(List<Student>));
+            xmlserializer.Serialize(writer, listStudents);
             writer.Close();
             Stream filestream = new FileStream(filename, FileMode.Open);
             XmlReader reader = new XmlTextReader(filestream);
             
-            Student xmlStudent = (Student)xmlserializer.Deserialize(reader);
-            Console.WriteLine(xmlStudent.name);
-            reader.Close();
+            List<Student> xmlStudents = (List<Student>)xmlserializer.Deserialize(reader);
+            Console.WriteLine(xmlStudents[0].name);
+            //Console.WriteLine(xmlStudent.name);
+            //reader.Close();
         }
     }
     public class Student
