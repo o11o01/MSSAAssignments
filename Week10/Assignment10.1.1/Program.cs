@@ -34,8 +34,7 @@ namespace Assignment10._1._1
             
             List<Student> xmlStudents = (List<Student>)xmlserializer.Deserialize(reader);
             Console.WriteLine(xmlStudents[0].name);
-            //Console.WriteLine(xmlStudent.name);
-            //reader.Close();
+            reader.Close();
         }
     }
     public class Student
