@@ -22,6 +22,7 @@
                 }
             }
             Console.WriteLine(profit);
+            //Create New Solution that isn't nested
         }
     }
 }
