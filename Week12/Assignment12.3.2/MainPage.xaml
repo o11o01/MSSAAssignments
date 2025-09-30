@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment12._3._2.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Grid ColumnDefinitions="*,*,*">
+                <Entry Placeholder="Book ID" Text="{Binding NewBookID}" Grid.Column="0"/>
+                <Entry Placeholder="Book Title" Text="{Binding NewBookTitle}" Grid.Column="1"/>
+                <Button Text="Add Book" Command="{Binding AddBookCommand}" Grid.Column="2" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*,*">
+                <Entry Placeholder="Book Publish Date" Text="{Binding NewBookYear}" Grid.Column="0"/>
+                <Entry Placeholder="Book Author" Text="{Binding NewBookAuthor}" Grid.Column="1"/>
+                <Button Text="Refresh" Command="{Binding RefreshCommand}" Grid.Column="2" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*,*">
+                <Button Text="Delete" Command="{Binding DeleteBookCommand}" Grid.Column="2" />
+            </Grid>
+            <CollectionView ItemsSource="{Binding Books}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="AliceBlue" Margin="5" Padding="10">
+                            
+                            <Grid ColumnDefinitions="*,*,*,*">
+                                <Label Text="{Binding Id, StringFormat='ID: {0}'}" Grid.Column="0" />
+                                <Label Text="{Binding Title}" Grid.Column="1"/>
+                                <Label Text="{Binding Author}" Grid.Column="2"/>
+                                <Label Text="{Binding PublishDate, StringFormat='Published-{0}' }" Grid.Column="3"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
